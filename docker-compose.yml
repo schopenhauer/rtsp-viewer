@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  doorcam:
+    build: .
+    container_name: doorcam
+    ports:
+      - "3001:3001"
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+      - RTSP_URL=rtsps://10.0.0.182:7441/SDHa3EtQ0i6wPuOV?enableSrtp
