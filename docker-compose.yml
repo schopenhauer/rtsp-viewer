@@ -1,9 +1,7 @@
-version: '3.8'
-
 services:
-  doorcam:
+  rtsp-viewer:
     build: .
-    container_name: doorcam
+    container_name: rtsp-viewer
     ports:
       - "3001:3001"
     restart: unless-stopped
