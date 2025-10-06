@@ -8,7 +8,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function connect() {
   const canvas = document.getElementById('canvas');
-  const wsUrl = `ws://${window.location.hostname}:${window.location.port || 3001}`;
+  // Use same protocol as page (ws:// or wss://) and same host/port
+  const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+  const wsUrl = `${protocol}//${window.location.host}`;
   
   updateStatus('connecting', 'Connecting...');
   

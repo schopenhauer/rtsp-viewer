@@ -8,3 +8,5 @@ services:
     environment:
       - NODE_ENV=production
       - RTSP_URL=rtsps://10.0.0.182:7441/SDHa3EtQ0i6wPuOV?enableSrtp
+    networks:
+      - default
