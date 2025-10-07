@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require('express');
 const http = require('http');
 const WebSocket = require('ws');
@@ -20,6 +22,8 @@ app.get('/', (req, res) => {
 wss.on('connection', (ws) => {
   console.log('Client connected');
   
+  let intentionalKill = false;
+  
   // FFmpeg stream configuration
   const ffmpegCommand = ffmpeg(RTSP_URL)
     .inputOptions([
@@ -40,7 +44,9 @@ wss.on('connection', (ws) => {
       console.log('FFmpeg started:', commandLine);
     })
     .on('error', (err) => {
-      console.error('FFmpeg error:', err.message);
+      if (!intentionalKill) {
+        console.error('FFmpeg error:', err.message);
+      }
       if (ws.readyState === WebSocket.OPEN) {
         ws.close();
       }
@@ -68,12 +74,14 @@ wss.on('connection', (ws) => {
 
   // Handle client disconnect
   ws.on('close', () => {
-    console.log('Client disconnected');
+    console.log('Client disconnected - stopping FFmpeg');
+    intentionalKill = true;
     ffmpegCommand.kill('SIGKILL');
   });
 
   ws.on('error', (err) => {
     console.error('WebSocket error:', err);
+    intentionalKill = true;
     ffmpegCommand.kill('SIGKILL');
   });
 });
