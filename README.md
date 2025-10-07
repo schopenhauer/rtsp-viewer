@@ -34,22 +34,6 @@
    npm start
    ```
 
-## Prerequisites
-
-Before running this application, you need to install:
-
-1. **Node.js** (v14 or higher)
-   ```bash
-   node --version
-   npm --version
-   ```
-
-2. **FFmpeg** (required for video stream processing)
-   ```bash
-   sudo apt update
-   sudo apt install ffmpeg
-   ```
-
 ## License
 
 ISC
