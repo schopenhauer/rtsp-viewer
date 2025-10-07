@@ -19,7 +19,11 @@ function connect() {
       canvas: canvas,
       autoplay: true,
       audio: false,
-      videoBufferSize: 512 * 1024,
+      videoBufferSize: 1024 * 1024,  // Increased to 1MB for smoother playback
+      preserveDrawingBuffer: false,   // Better performance
+      progressive: true,              // Start decoding immediately
+      throttled: true,                // Prevent buffer overflow
+      chunkSize: 1024 * 1024,        // Process 1MB chunks
       onVideoDecode: function() {
         if (statusEl.classList.contains('connecting')) {
           updateStatus('connected', 'Connected');

@@ -23,13 +23,21 @@
 
 ### Node.js
 
-1. Set environment variables (optional):
+1. Install dependencies:
+
    ```bash
-   export RTSP_URL="rtsp://your-camera-ip:port/stream"
-   export PORT=3001
+   npm install
    ```
 
-2. Start the server:
+2. Create a `.env` file (optional):
+
+   ```env
+   RTSP_URL=rtsp://your-camera-ip:port/stream
+   PORT=3001
+   ```
+
+3. Start the server:
+
    ```bash
    npm start
    ```
