@@ -33,7 +33,3 @@
    ```bash
    npm start
    ```
-
-## License
-
-ISC
